@@ -54,7 +54,7 @@ const switchTab = (id) => {
         displayReportedPosts();
     }
 };
-//bug 2 fixed
+//bug 2 & 3 fixed
 const createPost = (post) => {
     const image = post.image;
     const userImage = post.userImage;
@@ -151,18 +151,20 @@ const showPosts = (posts) => {
         productsContainer.appendChild(div);
     });
 };
-
+//bug 4 fixed
 const displayLikedPosts = () => {
+    document.getElementById("liked").innerHTML = "";
     const likedPosts = getLikedPosts();
     likedPosts.forEach((post) => {
         const div = createPost(post);
         document.getElementById( "liked" ).appendChild(div);
     });
 };
-
+//bug 5 fixed
 const displayReportedPosts = () => {
+    document.getElementById("reported").innerHTML = "";
     const reportedPosts = getReportedPosts();
-    posts.forEach((post) => {
+    reportedPosts.forEach((post) => {
         const div = createPost(post);
         document.getElementById( "reported" ).appendChild(div);
     });
@@ -173,5 +175,4 @@ const loadPosts = async () =>{
   posts = await data.json();
   showPosts(posts);
 }
-
 loadPosts();
