@@ -14,10 +14,15 @@ const getReportedPosts = () => {
 const isLiked = (id) => {
     return likedPostsId?.length && !!likedPostsId.includes(id);
 };
-
+//bug 1 fixed
 const addToLiked = (id) => {
-    likedPostsId.plus(id); 
-    showPosts(posts);
+  if (likedPostsId.indexOf(id) === -1) {
+    likedPostsId.push(id);
+  }
+  const remainingPosts = posts.filter(
+    (post) => !reportedPostsId.includes(post.id)
+  );
+  showPosts(remainingPosts);
 };
 
 const reportPost = (id) => {
